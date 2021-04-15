@@ -3,15 +3,14 @@ import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 
+import { errorHandler, NotFoundError } from '@bkatickets/common';
+
 import {
   currentUserRouter,
   signupRouter,
   signinRouter,
   signoutRouter,
 } from './routes/index-routes';
-
-import { errorHandler } from './middlewares/error-handler';
-import { NotFoundError } from './errors/not-found-error';
 
 const app = express();
 app.set('trust proxy', true);
