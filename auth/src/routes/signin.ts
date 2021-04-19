@@ -37,8 +37,8 @@ router.post(
         id: existingUser.id,
         email: existingUser.email,
       },
-      process.env.JWT_KEY!,
-      { expiresIn: '1h' }
+      process.env.JWT_KEY!
+      // { expiresIn: '1h' }
     );
 
     // Store it on session object
