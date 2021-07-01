@@ -15,6 +15,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Run Mongo
+        run:  sudo docker run --name mongo -d -p 27017:27017 mongo
       - name: Run each service test
         run: cd auth && npm install && npm run test:ci
         env:
