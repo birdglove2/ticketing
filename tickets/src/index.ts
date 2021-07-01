@@ -6,7 +6,7 @@ import { OrderCreatedListener } from './events/listeners/order-created-listerner
 import { OrderCancelledListener } from './events/listeners/order-cancelled-listener';
 
 const start = async () => {
-  console.log('making changes...');
+  console.log('making changes2...');
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KET must be deifined');
   }
