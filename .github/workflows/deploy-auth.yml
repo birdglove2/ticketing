@@ -1,0 +1,23 @@
+name: deploy-auth
+
+on:
+  push:
+    branch:
+      - main
+    paths:
+      - 'auth/**'
+
+jobs:
+  build:
+    - runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+    - name: Build docker image
+      run: cd auth && docker build -t birdglove2/auth .
+    - name: Login user to docker
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      env:
+        DOCKER_USERNAME: ${{ secret.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secret.DOCKER_PASSWORD }}
+    - name: Push docker
+      run: docker push birdglove2/auth
