@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { app } from './app';
 
 const start = async () => {
-  console.log('Starting up... test seperated workflow1');
+  console.log('Starting up... test deploy');
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KET must be deifined');
   }
