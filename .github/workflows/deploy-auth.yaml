@@ -17,7 +17,7 @@ jobs:
       - name: Login user to docker
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
-          DOCKER_USERNAME: ${{ secret.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secret.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push docker
         run: docker push birdglove2/auth
