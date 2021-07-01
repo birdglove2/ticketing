@@ -50,13 +50,14 @@ router.post(
     //   source: token,
     // });
 
-    const charge = await stripe.charges.create({
-      amount: 2000,
-      currency: 'usd',
-      source: 'tok_amex',
-      description: 'My First Test Charge (created for API docs)',
-    });
-    const payment = await Payment.build({ orderId, stripeId: charge.id });
+    // TODO: stripe bug
+    // const charge = await stripe.charges.create({
+    //   amount: 2000,
+    //   currency: 'usd',
+    //   source: 'tok_amex',
+    //   description: 'My First Test Charge (created for API docs)',
+    // });
+    const payment = await Payment.build({ orderId, stripeId: 'asdasddas' });
     await payment.save();
 
     new PaymentCreatedPublisher(natsWrapper.client).publish({
