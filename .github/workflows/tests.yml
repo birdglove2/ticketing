@@ -6,8 +6,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
     steps:
       - uses: actions/checkout@v2
-      - run: cd auth && npm install && npm run test:ci
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Run each service test
+        run: cd auth && npm install && npm run test:ci
+        env:
+          CI: true
       
       
