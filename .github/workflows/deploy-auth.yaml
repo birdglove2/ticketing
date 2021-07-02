@@ -21,3 +21,11 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push docker
         run: docker push birdglove2/auth
+      - name: Connect digitalocean
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Save kubernetes to the digitalocean cluster
+        run: doctl kubernetes cluster kubeconfig save ticketing
+      - name: Restart Deployment
+        run: kubectl rollout restart deployment auth-depl
