@@ -1,0 +1,23 @@
+name: deploy-orders
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'orders/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build docker image
+        run: cd orders && docker build -t birdglove2/orders .
+      - name: Login user to docker
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push docker
+        run: docker push birdglove2/orders
