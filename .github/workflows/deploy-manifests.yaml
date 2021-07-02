@@ -19,4 +19,4 @@ jobs:
       - name: Save kubernetes to the digitalocean cluster
         run: doctl kubernetes cluster kubeconfig save ticketing
       - name: Apply config file to the cluster
-        run: kubectl apply -f infra/k8s infra/k8s-prod
+        run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
